@@ -1,0 +1,288 @@
+/*
+COLOUR PALETTE
+
+orange accent       ff8e2d
+teal                20abad
+darker teal         007c84
+off-white           eeeaeb
+
+*/
+
+/* UNIVERSAL STYLES */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    color: #eeeaeb;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    width: 100%;
+    font-size: 2.25rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+h1 a:hover {
+    color: #ff8e2d;
+}
+
+h1 a, ul.menu a {
+    color: #eeeaeb;
+    text-decoration: none;
+}
+
+/* MOBILE VIEW */
+
+header {
+    background-color: #20abad;
+}
+
+ul.menu a {
+    text-transform: uppercase;
+    /* expand the clickable/tap area to fit the entire li vs just the text */
+    display: block;
+    /* add the padding here vs the li as it will become clickable space too */
+    padding: 1rem;
+    text-decoration: underline;
+    text-underline-position: under;
+}
+
+ul.menu a:hover,
+ul.menu a:active,
+ul.menu a:focus,
+ul.menu a:focus-within {
+    background-color: #ff8e2d;
+    border-radius: 5px;
+}
+
+ul.submenu > li a {
+    text-decoration: none;
+}
+
+ul.submenu {
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-color: #007c84;
+}
+
+ul.menu li:last-child {
+    /* padding-bottom: 2rem; */
+}
+/* .submenu li{
+    flex-grow: 1;
+    text-align: center;
+} */
+svg {
+    /* We're completely hiding the down-arrow in 
+       our mobile view because there is no need for
+       a visual indicator for a drop-down menu.
+       Everything is already on display! */
+    /* display: none; */
+}
+svg {
+    /* display: block; */
+    width: 12px;
+    margin-left: 8px;
+    fill: white;
+}
+/* HERO BANNER */
+
+main {
+    background: left / cover url('../img/grapefruit-bg.webp');
+    text-align: center;
+}
+
+main section {
+    background-color: rgba(0,0,0,0.3);
+}
+
+.flex-wrapper {
+    padding: 15% 10%;
+    /* We're turning on flex here so that we can
+       use some of its alignment properties. */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-wrapper h2 {
+    font-family: 'Pacifico', cursive;
+    font-size: 4rem;
+}
+
+.flex-wrapper p {
+    margin: 2rem;
+    font-size: 1.25rem;
+}
+
+.flex-wrapper p a {
+    background-color: #009ba3;
+    padding: 1rem;
+    border-radius: 10px;
+    text-transform: uppercase;
+    color: #eeeaeb;
+}
+ul.menu {
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+}
+.flex-wrapper p a:hover {
+    background-color: #007c84;
+}
+
+.menu > li:not(.dropdown) {
+    /* flex-basis: 50%; */
+}
+
+/* DESKTOP VIEW */
+
+@media screen and (min-width: 740px) {
+    nav {
+        max-width: 1024px;
+        margin: 0 auto;
+    }
+
+    /* svg {
+        display: block;
+        width: 1rem;
+        margin-left: 0.75rem;
+    } */
+
+    svg path {
+        fill: #f5f5f5;
+    }
+
+    ul.menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    /* This is a direct descendant selector. It
+       only selects list items that are directly
+       inside of ul.menu. */
+    ul.menu > li {
+        margin: 1rem;
+    }
+
+    ul.menu li {
+        /* flex: 1 0 auto;  */
+        /* This is the shorthand property for flex-grow, flex-shrink, and flex-basis. It says 'if there's enough room, every flex item can grow a little'. */
+        text-align: center;
+        position: relative; /* allows us to position the dropdown absolutely but relative to this element */
+        white-space: nowrap; /* forces the text inside the li to stay on one line and not wrap */
+    }
+
+    ul.menu li:last-child {
+        padding-bottom: 0;
+    }
+
+    li.dropdown > a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Let's position the links. */
+    ul.submenu {
+        background-color: #007c84;
+        /* This makes sure that there's enough room
+           for the long names, but makes the drop-down
+           menus the same width as the parent when
+           there's enough room in the viewport. */
+        min-width: 100%;
+        padding: 0;
+        border-radius: 0 0 5px 5px;
+        position: absolute;
+        /* When the user isn't hovering over the links or focusing on them, they should be hidden. */
+        /* visibility: hidden; */
+        display: none;
+        left: 0;
+        /* opacity: 0; */
+        z-index: 1;
+        /* add transition to remove the clunkiness. Delaying the hover effect makes this more usable when accidentally moving your cursor off the menu. */
+        /* transition: all 0.5s ease; */
+    }
+    ul.menu li:last-of-type .submenu {
+        right: 0;
+        left: auto;
+        
+    }
+    ul.menu li:last-of-type .submenu li {
+        text-align: right;
+    }
+    ul.submenu li {
+        text-align: left;
+    }
+
+
+    /* This lets the user see the links again whenever they hover over them or use their keyboard / flick gesture / switch input to focus. */
+    ul.menu li:hover > ul,
+    ul.menu li:focus-within > ul,
+    ul.menu li > ul:focus {
+        /* visibility: visible; */
+        /* opacity: 1; */
+        display: block;
+    }
+
+    ul.submenu a:hover,
+    ul.submenu a:focus   {
+        color: #007c84;
+        background-color: #eeeaeb;
+        border-radius: 0;
+        /* text-decoration: underline; */
+    }
+
+    /* HERO BANNER */
+    
+    main section {
+        background-color: rgba(0,0,0,0);
+    }
+
+    .flex-wrapper {
+        width: 100%;
+        /* This calculation makes the height of the hero banner responsive and take up the full height of the viewport. It takes 100% of the viewport size and subtracts the size of the navigation from it. */
+        min-height: calc(100vh - 10.875rem);
+        /* The .flex-wrapper itself is a block-level
+           element, so we're centering it here with
+           our margin auto trick. */
+        margin: auto;
+        padding: 2rem;
+        /* 
+            ON YOUR OWN
+            Instructors: Have students figure out how to use alignment properties for flex containers in order to shuffle the main content over to the right-hand side of the page and centre it. 
+        */
+        justify-content: center;
+        align-items: flex-end;
+    }
+
+    .flex-wrapper h2 {
+        /* This helps align things better with the
+           navigation menu. */
+        margin-right: 2rem;
+    }
+
+    .flex-wrapper p {
+        /* The 'ch' unit is 'character width'. More
+           precisely, it's the width of the '0' glyph,
+           given the current font properties. This 
+           makes it so that our paragraphs aren't
+           terribly long. */
+        width: 30ch;
+    }
+
+
+}
+
+/* LARGEST VIEW */
+
+@media screen and (min-width: 1024px) {
+    .flex-wrapper {
+        max-width: 1024px;
+    }
+}
